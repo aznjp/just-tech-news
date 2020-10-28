@@ -34,6 +34,8 @@ Post.init({
 }, {
     sequelize,
     freezeTableName: true,
+    /* We defined the column names to have an underscore naming convention by using the underscored: true, assignment. 
+    In Sequelize, columns are camelcase by default.*/
     underscored: true,
     modelName: 'post'
 });
