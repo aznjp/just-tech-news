@@ -6,6 +6,8 @@ const posts = dbPostData.map(post => post.get({ plain: true }));
 
 
 router.get('/', (req, res) => {
+    console.log(req.session);
+
     /*Because we've hooked up a template engine, we can now use res.render() and specify which template we want to use. 
     In this case, we want to render the homepage.handlebars template (the .handlebars extension is implied). */
 
@@ -42,6 +44,16 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
     })
 });
+
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('login');
+});
+
 
 
 module.exports = router;
